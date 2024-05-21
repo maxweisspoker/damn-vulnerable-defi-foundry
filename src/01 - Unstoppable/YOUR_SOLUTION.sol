@@ -42,55 +42,7 @@ contract IAmUnstoppable {
         // modified the test so that this contract has the 10 DVT tokens instead.
         require(token.balanceOf(address(this)) == INITIAL_PLAYER_TOKEN_BALANCE);
 
-        /*//////////////////////////////////////////////////////////////
-                                    SOLUTION
-        //////////////////////////////////////////////////////////////*/
-
-        // The UnstoppableVault contract function flashLoan() contains the following
-        // two lines of code:
-        //     uint256 balanceBefore = totalAssets();
-        //     if (convertToShares(totalSupply) != balanceBefore) revert InvalidBalance();
-
-        // The totalAssets() function contains the line:
-        //    return asset.balanceOf(address(this));
-        // And the convertToShares() function is defined as:
-        //    uint256 supply = totalSupply;
-        //    return supply == 0 ? assets : assets.mulDivDown(supply, totalAssets());
-        // where the totalSupply and assets are both the total number of minted
-        // tokens, and supply is the number of tokens in the vault.
-
-        // Because the asset supply information is only changed when the
-        // deposit and withdraw functions are called, we can change the actual
-        // amount of tokens in the vault by simply doing a direct transfer.
-        // This will alter the "return asset.balanceOf(address(this))" return
-        // value in the totalAssets() function, which allows us to change both
-        // the convertToShares() function as well as the "balanceBefore" variable
-        // which gets set via the totalAssets() function.
-
-        // If we look at the way that the convertToShares() function works, the
-        // math is:  (assets * supply) / totalAssets()
-        // Therefore if we add tokens to the contract with the transfer function,
-        // which doesn't update the supply, we can increase the denominator
-        // of that math function and reduce the returned result. Additionally,
-        // by transfering tokens into the contract, we increase "balanceBefore"
-        // variable, since it is set via the totalAssets() function. The decrease
-        // in the convertToShares() returned value, as well as the increase in
-        // the "balanceBefore" variable, should cause the statement:
-        //    if (convertToShares(totalSupply) != balanceBefore) revert InvalidBalance();
-        // to fail and call the "revert InvalidBalance()".
-
-        // And because nobody can decrease the amount of tokens from the contract
-        // (because they would not have approval), the contract can only be
-        // manipulated to add more tokens, which would still cause the revert.
-        // This means we should be able to solve the challenge by simply transfering
-        // DVT tokens into the vault via ERC20 transfer(), bypassing the deposit()
-        // method.
-
-        token.transfer(address(vault), token.balanceOf(address(this)));
-
-        // Youtube walkthroughs:
-        // https://www.youtube.com/watch?v=SssTj52WYNM
-        // https://www.youtube.com/watch?v=th8U1R29KW0
+        // Your code here
     }
 
     // The "payable" functionality and receive/fallback are provided for your
