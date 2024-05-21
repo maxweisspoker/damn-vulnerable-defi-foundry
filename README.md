@@ -1,6 +1,6 @@
 ![](cover.png)
 
-A Foundry rewrite of [Damn Vulnerable DeFi](https://www.damnvulnerabledefi.xyz/)
+A Foundry re-write of [Damn Vulnerable DeFi](https://www.damnvulnerabledefi.xyz/)
 
 ## Notes
 
