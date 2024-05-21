@@ -1,0 +1,41 @@
+[profile.default]
+
+# Shanghai is compatible with all challenges. Earlier and later EVM versions are not.
+evm_version = "shanghai"
+
+src = "src"
+out = "out"
+libs = ["lib"]
+
+ffi = false
+
+# Use our specific remappings, and error if there is a mapping that is not defined
+auto_detect_remappings = false
+
+ignored_error_codes = [1878, 2018, 2072, 2462, 3860, 5159, 5333, 5574, 5667, 5740, 8760, 9302]
+
+### Most of the errors are the result of mixing solc versions and using some
+### weird libraries for testing. But for the curious, here are the error codes:
+# 1878 = missing SPDX licence
+# 2018 = function state mutability can be restricted to view
+# 2072 = unused variables
+# 2462 = warning about constructor visibility being ignored
+# 3860 = contract initcode size too large
+# 5159 = warning about selfdestruct being deprecated
+# 5333 = mismatched compiler version warnings
+# 5574 = contract size limit warning
+# 5667 = unused named function parameter
+# 5740 = unreachable code
+# 8760 = function variable name shadows contract variable name
+# 9302 = low-level call return value not used
+
+# The warning about the size of "test/09 - PuppetV2.t.sol" and
+# "script/Deployers/09 - Deploy Puppet V2.s.sol" is left, because I could not
+# for the life of me figure out how to get rid of them. If you can figure that
+# out, please submit a PR! I want players to be able to focus on the
+# challenges, not wondering what obscure warnings are about.
+
+[fmt]
+bracket_spacing = true
+
+# See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
