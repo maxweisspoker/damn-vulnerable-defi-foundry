@@ -36,13 +36,14 @@ Featuring flash loans, price oracles, governance, NFTs, DEXs, lending pools, sma
 
 1. Ensure that all [foundry tools](https://github.com/foundry-rs/foundry) and necessary Linux terminal programs are installed.
 2. Clone [the repository](https://github.com/maxweisspoker/damn-vulnerable-defi-foundry).
-3. Run `git submodule update --init --recursive` inside the `damn-vulnerable-defi-foundry` folder to ensure dependencies are installed and set to the correct versions.
-4. Switch/checkout a new branch off the main branch, so that any upates or changes to the repo don't create conflicts while you are working.
-5. Delete the file `damn-vulnerable-defi-foundry/test/00 - Setup Script.t.sol` since it merely causes `forge build` to fail with an error telling you to run the command in step 3.
-6. Code your solution in the `src` folder, inside the `solveChallenge()` function that is in the `YOUR_SOLUTION.sol` file for each challenge. (You can ignore the contract name in the `YOUR_SOLUTION.sol` file -- I named them something I thought was fun rather than just "AttackContract".)
-7. Then just run the test using the challenge name and at least two v's (`-vv`) of verbosity. For example: `forge test --mt Unstoppable -vv` or `forge test --mt Side_Entrance -vv`. (Challenge names that contain multiple words can be called `Like_This` or `LikeThis`. You can also use the challenge number, e.g. `forge test --mt 03 -vv`. Numbers 1-9 need to be prefixed with a zero.)
-8. If the test is executed successfully without a revert, you've passed!
-9. (Optional) To get a call trace that may help you debug a test failure, you can use five v's (e.g. `forge test --mt Unstoppable -vvvvv`). Alternatively, you can go through the EVM code byte-by-byte by replacing the `--mt` or `--match-test` argument with the `--debug` argument. For example: `forge test --debug Unstoppable`
+3. Run `git submodule update --init --recursive && forge install OpenZeppelin/openzeppelin-contracts-upgradeable --no-commit && git submodule update --init --recursive` inside the `damn-vulnerable-defi-foundry` folder to ensure dependencies are installed and set to the correct versions.
+4. Delete the file `damn-vulnerable-defi-foundry/test/00 - Setup Script.t.sol` since it merely causes `forge build` to fail with an error telling you to run the command in step 3.
+5. Commit the changes from steps 3 and 4 so that you can preserve them when you switch branches in the next step.
+6. Switch/checkout a new branch off the main branch, so that any upates or changes to the repo don't create conflicts while you are working.
+7. Code your solution in the `src` folder, inside the `solveChallenge()` function that is in the `YOUR_SOLUTION.sol` file for each challenge. (You can ignore the contract name in the `YOUR_SOLUTION.sol` file -- I named them something I thought was fun rather than just "AttackContract".)
+8. Then just run the test using the challenge name and at least two v's (`-vv`) of verbosity. For example: `forge test --mt Unstoppable -vv` or `forge test --mt Side_Entrance -vv`. (Challenge names that contain multiple words can be called `Like_This` or `LikeThis`. You can also use the challenge number, e.g. `forge test --mt 03 -vv`. Numbers 1-9 need to be prefixed with a zero.)
+9. If the test is executed successfully without a revert, you've passed!
+10. (Optional) To get a call trace that may help you debug a test failure, you can use five v's (e.g. `forge test --mt Unstoppable -vvvvv`). Alternatively, you can go through the EVM code byte-by-byte by replacing the `--mt` or `--match-test` argument with the `--debug` argument. For example: `forge test --debug Unstoppable`
 
 ## Tips
 
